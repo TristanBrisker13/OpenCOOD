@@ -280,7 +280,7 @@ class BaseDataset(Dataset):
         timestamps = []
 
         for file in yaml_files:
-            res = file.split('/')[-1]
+            res = os.path.basename(file)
 
             timestamp = res.replace('.yaml', '')
             timestamps.append(timestamp)

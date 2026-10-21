@@ -16,6 +16,7 @@ from opencood.data_utils.pre_processor.base_preprocessor import \
 
 class SpVoxelPreprocessor(BasePreprocessor):
     def __init__(self, preprocess_params, train):
+        self._init_args = (preprocess_params, train)
         super(SpVoxelPreprocessor, self).__init__(preprocess_params,
                                                   train)
         self.spconv = 1
@@ -55,6 +56,15 @@ class SpVoxelPreprocessor(BasePreprocessor):
                 num_point_features=4,
                 max_num_voxels=self.max_voxels
             )
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        state.pop('voxel_generator', None)  # spconv object can't be pickled
+        return state
+
+    def __setstate__(self, state):
+        # rebuild everything, including voxel_generator, inside the worker
+        self.__init__(*state['_init_args'])
 
     def preprocess(self, pcd_np):
         data_dict = {}
