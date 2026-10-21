@@ -1,0 +1,12 @@
+train/
+└── 2021_08_16_22_26_54/          ← a scene
+    ├── 641/                       ← one connected vehicle (CAV id)
+    │   ├── 000069.pcd             ← LiDAR point cloud
+    │   ├── 000069_camera0.png     ← front camera
+    │   ├── 000069_camera1.png     ← right-rear camera
+    │   ├── 000069_camera2.png     ← left-rear camera
+    │   ├── 000069_camera3.png     ← back camera
+    │   ├── 000069.yaml            ← labels, poses, calibration
+    │   ├── 000071.pcd
+    │   └── ...
+    └── 650/
